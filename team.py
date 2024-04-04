@@ -1,5 +1,5 @@
 from abc import abstractmethod
-
+#initial thoughts behind accessing player info
 
 class Player:
     def __init__(self,stats,name) -> None:
