@@ -13,7 +13,7 @@ class Game:
         self.inning=0
         self.home_runs=0
         self.away_runs=0
-        self.bases=[None, None, None]
+        self.bases=[]
 
     def clear_bases(self):
         self.bases=[None, None, None]
@@ -22,14 +22,19 @@ class Game:
         for i in range(num_bases):
             if self.bases[2]!=None:
                 self.bases[2]=None
-                team_runs+=1
+                if str(self.homeT.name)==new_batter.team:
+                    self.home_runs+=1
+                else:
+                    self.away_runs+=1
             if self.bases[1]!=None:
                 self.bases[2]=self.bases[1]
                 self.bases[1]=None
             if self.bases[0]!=None:
                 self.bases[1]=self.bases[0]
                 self.bases[0]=None
-        self.bases[num_bases-1]=new_batter
+            if i==0:
+                self.bases[0]=new_batter
+        
         
 
     def play_ball(self):
@@ -45,14 +50,14 @@ class Game:
         outs=0
 
         #away team at bat
+        self.clear_bases()
         while outs<3:
             batter=self.awayT.at_bat
             pitcher=self.homeT.pitcher
-            print(f'{batter} at bat, {outs} outs')
             result=self.play_at_bat(batter, pitcher)
             if result=='OUT':
-                print(f'{batter} strikes out')
                 outs+=1
+                print(f'{batter} strikes out, {outs} outs')
             else:
                 self.advance_runners(result, batter, self.away_runs)
                 print(f'{batter} gets a {result} base hit')
@@ -63,29 +68,29 @@ class Game:
         while outs<6 and outs>=3:
             batter=self.homeT.at_bat
             pitcher=self.awayT.pitcher
-            print(f'{batter} at bat, {outs&3} outs')
             result=self.play_at_bat(batter, pitcher)   
             if result=='OUT':
-                print(f'{batter} strikes out')
                 outs+=1
+                print(f'{batter} strikes out, {outs % 3} outs')
             else:
                 self.advance_runners(result, batter, self.home_runs)
                 print(f'{batter} gets a {result} base hit')
-            print(f'bases: {self.bases}')
+            print(f'bases: {self.bases}', '\n')
             self.homeT.batter_up()
+
 
     
 
     def play_at_bat(self, batter, pitcher):
         '''plays an at bat, returns the number of bases the batter advanced'''
-        hit_prob=batter.hit_prob * pitcher.hit_prob
-        walk_prob=batter.walk_prob * pitcher.walk_prob
+        hit_prob=(batter.hit_prob + pitcher.hit_prob)/2
+        walk_prob=(batter.walk_prob + pitcher.walk_prob)/2
         chance=random.random()
         if walk_prob>chance:
             return 1
         if hit_prob>chance:
             probabilities=batter.probs
-            probabilities[3]=probabilities[3]*pitcher.hr_prob
+            probabilities[3]=(probabilities[3]+pitcher.hr_prob)/2
             bases_hit=random.choices([1, 2, 3, 4], probabilities)
             return bases_hit[0]
         else:

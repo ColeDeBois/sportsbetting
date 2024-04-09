@@ -1,11 +1,13 @@
 #initial thoughts behind accessing player info
 batting_order_dict={
     'ARI': ['Ketel Marte', 'Corbin Carroll', 'Lourdes Gurriel', 'Christian Walker', 'Evan Longoria', 'Pavin Smith', 'Nick Ahmed', 'Gabriel Moreno', 'Jake McCarthy'],
-    'SEA': ['J.P. Crawford', 'Ty France', 'Julio Rodriguez', 'Jarred Kelenic', 'Eugenio Suarez', 'Teoscar Hernandez', 'Taylor Trammell', 'Tom Murphy', 'Jose Caballero']
+    'SEA': ['J.P. Crawford', 'Ty France', 'Julio Rodriguez', 'Jarred Kelenic', 'Eugenio Suarez', 'Teoscar Hernandez', 'Taylor Trammell', 'Tom Murphy', 'Jose Caballero'],
+    'GOD': ['God', 'God', 'God', 'God', 'God', 'God', 'God', 'God', 'God']
 }
 pitcher_order_dict={
     'ARI': ['Zac Gallen'],
-    'SEA': ['Luis Castillo']
+    'SEA': ['Luis Castillo'],
+    'GOD': ['God']
 }
 class Batter:
     def __init__(self, name, df) -> None:
@@ -13,9 +15,12 @@ class Batter:
         self._df=df
         self._name=name
     def __str__(self) -> str:
-        return self._name
+        return str(self.team)+' '+self._name
     def __repr__(self) -> str:
         return self.__str__()
+    @property
+    def team(self):
+        return self._df['Team'].iloc[0]
     @property
     def probs(self) -> list[float]:
         '''returns a list of probabilities for each at bat outcome in form of [single, 2b, 3b, hr]'''
