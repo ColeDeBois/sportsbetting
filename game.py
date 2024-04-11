@@ -4,7 +4,7 @@ import random
 
 
 class Game:
-    def __init__(self, home_team, away_team) -> None:
+    def __init__(self, away_team, home_team) -> None:
         df_bat=pd.read_csv('data/mlb-player-stats-Batters.csv')
         df_pit=pd.read_csv('data/mlb-player-stats-P.csv')
         self.homeT=Team(home_team, df_bat, df_pit, batting_order_dict[home_team], pitcher_order_dict[home_team])
@@ -14,6 +14,14 @@ class Game:
         self.home_runs=0
         self.away_runs=0
         self.bases=[]
+        self.transcript=''
+    
+    def transcribe(self, text):
+        '''adds text to the transcript of the game,
+        previously the text was printed to the console, now it is added to the transcript string and returned at the end of the game
+        '''
+        self.transcript+=text+'\n'
+        
 
     def clear_bases(self):
         self.bases=[None, None, None]
@@ -38,15 +46,17 @@ class Game:
         
 
     def play_ball(self):
+        '''plays a game of baseball, returns the score Tuple(away runs, home runs) and the transcript of the game'''
         while self.inning<=9:
             self.inning+=1
             self.play_inning()
-        print('Game Over')
-        print(f'{self.awayT}: {self.away_runs} {self.homeT}: {self.home_runs}')
+        self.transcribe('Game Over')
+        self.transcribe(f'{self.awayT}: {self.away_runs} {self.homeT}: {self.home_runs}')
+        return (self.away_runs, self.home_runs), self.transcript
 
     def play_inning(self):
-        print(f"It's the top of the {self.inning}th inning")
-        print(f"The Score is {self.awayT}: {self.away_runs} {self.homeT}: {self.home_runs}")
+        self.transcribe(f"It's the top of the {self.inning}th inning")
+        self.transcribe(f"The Score is {self.awayT}: {self.away_runs} {self.homeT}: {self.home_runs}")
         outs=0
 
         #away team at bat
@@ -57,12 +67,13 @@ class Game:
             result=self.play_at_bat(batter, pitcher)
             if result=='OUT':
                 outs+=1
-                print(f'{batter} strikes out, {outs} outs')
+                self.transcribe(f'{batter} strikes out, {outs} outs')
             else:
                 self.advance_runners(result, batter, self.away_runs)
-                print(f'{batter} gets a {result} base hit')
+                self.transcribe(f'{batter} gets a {result} base hit')
             self.awayT.batter_up()
-            print(f'bases: {self.bases}','\n')
+            self.transcribe(f'bases: {self.bases}' + '\n')
+        
         #home team at bat
         self.clear_bases()
         while outs<6 and outs>=3:
@@ -71,11 +82,11 @@ class Game:
             result=self.play_at_bat(batter, pitcher)   
             if result=='OUT':
                 outs+=1
-                print(f'{batter} strikes out, {outs % 3} outs')
+                self.transcribe(f'{batter} strikes out, {outs % 3} outs')
             else:
                 self.advance_runners(result, batter, self.home_runs)
-                print(f'{batter} gets a {result} base hit')
-            print(f'bases: {self.bases}', '\n')
+                self.transcribe(f'{batter} gets a {result} base hit')
+            self.transcribe(f'bases: {self.bases}' + '\n')
             self.homeT.batter_up()
 
 
@@ -95,7 +106,6 @@ class Game:
             return bases_hit[0]
         else:
             return 'OUT'
-            
             
             
     def __str__(self) -> str:
