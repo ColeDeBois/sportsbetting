@@ -13,6 +13,9 @@ pitchers= pd.read_csv('data/mlb-player-stats-P.csv')
 
 # Concatenate stats
 ARI_stats = list_of_dict_of_games[0]['ARI'][:990] # these numbers have to be in place for it to work as how i trained the model :3
+# If you want to put in your own games use the commented out section below
+# OTHER_stats = [batters[(batters['Team'] == "OTHER")].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == "OTHER")].drop(columns=pitchers.columns[:3])]
+# OTHER_stats = [stat for stats in OTHER_stats for stat in stats.values.flatten()][:990]
 SEA_stats = [batters[(batters['Team'] == "SEA")].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == "SEA")].drop(columns=pitchers.columns[:3])]
 SEA_stats = [stat for stats in SEA_stats for stat in stats.values.flatten()][:754]
 # Team2_stats = list_of_dict_of_games[0]['Team 2'] # this is the team COL, its kinda convoluted
