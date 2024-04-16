@@ -1,5 +1,6 @@
 from game import Game
 import PySimpleGUI as sg  
+from team import batting_order_dict as pod
 #keep the formating of (away_score, home_score) for storing the scores easily
 
 def run_sim(away_team, home_team, iters=25):
@@ -21,17 +22,18 @@ def run_sim(away_team, home_team, iters=25):
 
 def main():
     sg.popup_auto_close("Welcome to the Baseball Simulator", auto_close_duration=2, button_type=sg.POPUP_BUTTONS_NO_BUTTONS, no_titlebar=True)
+    
 
     layout = [
         [
             sg.Text("Welcome to the Baseball Simulator", font=('Arial', 20))
         ],
         [
-            sg.Text("Away Team", key='away_title'), sg.Combo(["ARI", "SEA", "GOD"], key='away_team')
+            sg.Text("Away Team", key='away_title'), sg.Combo(list(pod.keys()), key='away_team')
         ],
         
         [
-            sg.Text("Home Team", key='home_title'), sg.Combo(["ARI", "SEA", "GOD"], key='home_team'),
+            sg.Text("Home Team", key='home_title'), sg.Combo(list(pod.keys()), key='home_team'),
         ],
         
         [
