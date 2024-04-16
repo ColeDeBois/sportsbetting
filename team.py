@@ -1,10 +1,14 @@
 #initial thoughts behind accessing player info
 batting_order_dict={
+    'LAD': ['Mookie Betts', 'Freddie Freeman', 'J.D. Martinez', 'Max Muncy', 'Will Smith', 'Jason Heyward', 'Enrique Hernandez', 'David Peralta', 'Miguel Rojas'],
+    'LAA': ['Nolan Schanuel', 'Shohei Ohtani', 'Brandon Drury', 'Mike Moustakas', 'Luis Rengifo', 'Mickey Moniak', 'Logan O\'Hoppe', 'Trey Cabbage', 'Randal Grichuk'],
     'ARI': ['Ketel Marte', 'Corbin Carroll', 'Lourdes Gurriel', 'Christian Walker', 'Evan Longoria', 'Pavin Smith', 'Nick Ahmed', 'Gabriel Moreno', 'Jake McCarthy'],
     'SEA': ['J.P. Crawford', 'Ty France', 'Julio Rodriguez', 'Jarred Kelenic', 'Eugenio Suarez', 'Teoscar Hernandez', 'Taylor Trammell', 'Tom Murphy', 'Jose Caballero'],
     'GOD': ['God', 'God', 'God', 'God', 'God', 'God', 'God', 'God', 'God']
 }
 pitcher_order_dict={
+    'LAA': ['Reid Detmers'],
+    'LAD': ['Lance Lynn'],
     'ARI': ['Zac Gallen'],
     'SEA': ['Luis Castillo'],
     'GOD': ['God']
@@ -35,7 +39,7 @@ class Batter:
     @property
     def hit_prob(self) -> float:
         '''returns the probability of a hit '''
-        return (self._df['H']/self._df['AB']).iloc[0]
+        return self._df['H'].iloc[0]/self._df['AB'].iloc[0]
     @property
     def walk_prob(self) -> float:
         '''returns the probability of a walk'''
