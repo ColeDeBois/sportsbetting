@@ -9,17 +9,16 @@ model =  tf.keras.models.load_model('data/model.h5')
 # Extract SEA Stats
 batters= pd.read_csv('data/mlb-player-stats-Batters.csv')
 pitchers= pd.read_csv('data/mlb-player-stats-P.csv')
-
+home = "ARI"
+away = "SEA"
 
 # Concatenate stats
-ARI_stats = list_of_dict_of_games[0]['ARI'][:990] # these numbers have to be in place for it to work as how i trained the model :3
-# If you want to put in your own games use the commented out section below
-# OTHER_stats = [batters[(batters['Team'] == "OTHER")].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == "OTHER")].drop(columns=pitchers.columns[:3])]
-# OTHER_stats = [stat for stats in OTHER_stats for stat in stats.values.flatten()][:990]
-SEA_stats = [batters[(batters['Team'] == "SEA")].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == "SEA")].drop(columns=pitchers.columns[:3])]
-SEA_stats = [stat for stats in SEA_stats for stat in stats.values.flatten()][:754]
-# Team2_stats = list_of_dict_of_games[0]['Team 2'] # this is the team COL, its kinda convoluted
-concatenated_stats = ARI_stats + SEA_stats
+# ARI_stats = list_of_dict_of_games[0]['ARI'][:990] # these numbers have to be in place for it to work as how i trained the model :3
+Home_stats = [batters[(batters['Team'] == home)].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == home)].drop(columns=pitchers.columns[:3])]
+Home_stats = [stat for stats in Home_stats for stat in stats.values.flatten()][:990]
+Away_stats = [batters[(batters['Team'] == away)].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == away)].drop(columns=pitchers.columns[:3])]
+Away_stats = [stat for stats in Away_stats for stat in stats.values.flatten()][:754]
+concatenated_stats = Home_stats + Away_stats
 
 def run_model(input_data):
     # Preprocess the input data
@@ -35,9 +34,9 @@ def run_model(input_data):
     team1_score = predicted_scores[0][0]
     team2_score = predicted_scores[0][1]
     if team1_score > team2_score:
-        winner = "ARI Wins!"
+        winner = home + " Wins!"
     elif team2_score > team1_score:
-        winner = "SEA Wins!"
+        winner = away + " Wins!"
     else:
         winner = "Tie"
     
