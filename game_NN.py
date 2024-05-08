@@ -2,8 +2,9 @@ from game_details import list_of_dict_of_games
 import tensorflow as tf
 import numpy as np
 import pandas as pd
+
 def NN_run(away, home):
-# Load the model
+    # Load the model
     model =  tf.keras.models.load_model('data/model.h5')
 
     # Extract SEA Stats
@@ -15,10 +16,13 @@ def NN_run(away, home):
     # Concatenate stats
     # ARI_stats = list_of_dict_of_games[0]['ARI'][:990] # these numbers have to be in place for it to work as how i trained the model :3
     Home_stats = [batters[(batters['Team'] == home)].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == home)].drop(columns=pitchers.columns[:3])]
-    Home_stats = [stat for stats in Home_stats for stat in stats.values.flatten()][:990]
+    Home_stats = [stat for stats in Home_stats for stat in stats.values.flatten()][:754]
     Away_stats = [batters[(batters['Team'] == away)].drop(columns=batters.columns[:3]), pitchers[(pitchers['Team'] == away)].drop(columns=pitchers.columns[:3])]
     Away_stats = [stat for stats in Away_stats for stat in stats.values.flatten()][:754]
     concatenated_stats = Home_stats + Away_stats
+
+    print(len(Home_stats))
+    print(len(Away_stats))
 
     def run_model(input_data):
         # Preprocess the input data
@@ -45,5 +49,3 @@ def NN_run(away, home):
 
     return run_model(concatenated_stats)
     # Example usage
-    output = run_model(concatenated_stats)
-    print(output)
