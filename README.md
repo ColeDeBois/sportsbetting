@@ -5,8 +5,8 @@ Created by Cole, Greg, and Tahj. **run program.py to start!**
 ## Packages Required
 
 - `PySimpleGUI`
-- `tensorflow`\*
-- `numPy`
+- `tensorflow`
+- `numpy`
 - `pandas`
 - `pybaseball`\*
 
