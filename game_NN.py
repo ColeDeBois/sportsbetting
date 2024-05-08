@@ -40,7 +40,8 @@ def NN_run(away, home):
         else:
             winner = "Tie"
         
-        return predicted_scores, winner
+        confidence_scores = np.exp(predicted_scores) / np.sum(np.exp(predicted_scores))
+        return predicted_scores, winner, confidence_scores
 
     return run_model(concatenated_stats)
     # Example usage

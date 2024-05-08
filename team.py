@@ -4,15 +4,65 @@ batting_order_dict={
     'LAA': ['Nolan Schanuel', 'Shohei Ohtani', 'Brandon Drury', 'Mike Moustakas', 'Luis Rengifo', 'Mickey Moniak', 'Logan O\'Hoppe', 'Trey Cabbage', 'Randal Grichuk'],
     'ARI': ['Ketel Marte', 'Corbin Carroll', 'Lourdes Gurriel', 'Christian Walker', 'Evan Longoria', 'Pavin Smith', 'Nick Ahmed', 'Gabriel Moreno', 'Jake McCarthy'],
     'SEA': ['J.P. Crawford', 'Ty France', 'Julio Rodriguez', 'Jarred Kelenic', 'Eugenio Suarez', 'Teoscar Hernandez', 'Taylor Trammell', 'Tom Murphy', 'Jose Caballero'],
-    'GOD': ['God', 'God', 'God', 'God', 'God', 'God', 'God', 'God', 'God']
-}
+   'TEX':['Marcus Semien','Corey Seager','Nathaniel Lowe','Adolis García','Josh Jung','Jonah Heim','Robbie Grossman','Ezequiel Duran','Leody Taveras'],
+   'OAK':['Esteury Ruiz','Ramon Laureano','Ryan Noda','Brent Rooker','Jonah Bride','Carlos Pérez','Aledmys Díaz','Jace Peterson','Shea Langeliers'],
+   'DET':['Matt Vierling','Spencer Torkelson','Kerry Carpenter','Javier Baez','Nick Maton','Nick Maton','Miguel Cabrera','Jake Rogers','Jake Marisnick' ],
+   'CLE':['Steven Kwan','Amed Rosario','Jose Ramirez','Josh Naylor','Josh Bell','Andrés Giménez','Myles Straw','Will Brennan','Cam Gallagher'],
+   'CIN':['TJ Friedl','Matt McLain','Jonathan India','Elly De La Cruz','Spencer Steer','Tyler Stephenson','Will Benson','Nick Senzel','Curt Casali'],
+   'PIT':['Andrew McCutchen','Bryan Reynolds','Connor Joe','Carlos Santana','Ke\'Bryan Haye','Rodolfo Castro','Ji Hwan Bae','Mark Mathias','Austin Hedges'],
+   'TOR':['George Springer','Whit Merrifield','Bo Bichette','Vladimir Guerrero Jr.','Daulton Varsho','Matt Chapman','Danny Jansen','Cavan Biggio','Kevin Kiermaier'],
+   'PHI':['Kyle Schwarber','Trea Turner','Alec Bohm','Bryce Harpe','J.T. Realmuto','Bryson Stott','Kody Clemens','Brandon Marsh','Edmundo Sosa'],
+   'BAL':['Austin Hays','Adley Rutschman','Anthony Santander','Gunnar Henderson','Ramon Urias','Aaron Hicks','James McCann','Jorge Mateo','Joey Ortiz'],
+   'WAS':['Lane Thomas','Luis García Jr.','Jeimer Candelario','Joey Meneses','Stone Garrett','Dominic Smith','Riley Adams','Victor Robles','CJ Abrams'],
+   'CWS':['Andrew Benintendi','Tim Anderson','Luis Robert Jr.','Eloy Jiménez','Gavin Sheets','Andrew Vaughn','Jake Burger','Elvis Andrus','Seby Zavala'],
+   'TB':['Yandy Díaz','Wander Franco','Harold Ramirez','Randy Arozarena','Isaac Paredes','Taylor Walls','Manuel Margot','Francisco Mejía','Jose Siri'],
+   'HOU':['Corey Julks','Jose Altuve','Kyle Tucker','Alex Bregman','José Abreu','Yainer Diaz','Jeremy Peña','Jake Meyers','Grae Kessinger'],
+   'ATL':['Mickey Moniak','Shohei Ohtani','Mike Trout','Brandon Drury','Matt Thaiss','Taylor Ward','Michael Stefanic','Luis Rengifo','Andrew Velazquez'],
+   'SD':['Fernando Tatis Jr.','Juan Soto','Manny Machado','Xander Bogaerts','Jake Cronenworth','Gary Sanchez','Matt Carpenter','Ha-Seong Kim','Trent Grisham'],
+   'CHC':['LaMonte Wade Jr.','Joc Pederson','Thairo Estrada','Michael Conforto','Mike Yastrzemski','Luis Matos','Patrick Bailey','Brandon Crawford','Casey Schmitt'],
+   'MIN':['Byron Buxton','Donovan Solano','Carlos Correa','Kyle Farmer','Royce Lewis','Willi Castro','Alex Kirilloff','Ryan Jeffers','Michael A. Taylor'],
+   'MIL':['Christian Yelich','Jesse Winker','Willy Adames','Rowdy Tellez','Luis Urías','Raimel Tapia','Brian Anderson','Victor Caratini','Joey Wiemer'],
+   'KC':['Nick Pratto','Bobby Witt Jr.','Salvador Perez','MJ Melendez','Edward Olivares','Maikel Garcia','Nicky Lopez','Samad Taylor','Drew Waters'],
+   'NYM':['Brandon Nimmo','Starling Marte','Jeff McNeil','Tommy Pham','Brett Baty','Francisco Alvarez','Daniel Vogelbach','Mark Canha','Luis Guillorme'],
+   'STL':['Brendan Donovan','Paul Goldschmidt','Nolan Arenado','Willson Contreras','Jordan Walker','Nolan Gorman','Paul DeJong','Tommy Edman','Alec Burleson'],
+   'SF':['LaMonte Wade Jr.','Joc Pederson','Thairo Estrada','Michael Conforto','Mike Yastrzemski','Luis Matos','Patrick Bailey','Brandon Crawford','Casey Schmitt'],
+   'COL':['Jurickson Profar','Ezequiel Tovar','Ryan McMahon','Elias Díaz','Randal Grichuk','Harold Castro','Elehuris Montero','Brenton Doyle','Austin Wynns' ],
+   'MIA':['Jorge Soler','Luis Arraez','Bryan De La Cruz','Garrett Cooper','Jesús Sanchez','Joey Wendle','Jonathan Davis','Nick Fortes','Garrett Hampson'],
+   'NYY':['Jake Bauers','Gleyber Torres','Anthony Rizzo','Giancarlo Stanton','Josh Donaldson','Billy McKinney','Oswaldo Cabrera','Kyle Higashioka','Anthony Volpe'],
+   'BOS':['Jarren Duran','Justin Turner','Alex Verdugo','Rafael Devers','Rob Refsnyder','Triston Casas','Enrique Hernandez','Reese McGuire','Pablo Reyes'],
+        }
 pitcher_order_dict={
     'LAA': ['Reid Detmers'],
     'LAD': ['Lance Lynn'],
     'ARI': ['Zac Gallen'],
     'SEA': ['Luis Castillo'],
-    'GOD': ['God']
-}
+   'TEX':['Jacob deGrom'],
+   'OAK':['Kyle Muller'],
+   'DET':['Eduardo Rodriguez'],
+   'CLE':['Shane Bieber'],
+   'CIN':['Hunter Greene'],
+   'PIT':['Mitch Keller'],
+   'TOR':['Alek Manoah'],
+   'PHI':['Aaron Nola'],
+   'BAL':['Kyle Gibson'],
+   'WAS':['Patrick Corbin'],
+   'CWS':['Dylan Cease'],
+   'TB':['Shane McClanahan'],
+   'HOU':['Framber Valdez'],
+   'ATL':['Max Fried'],
+   'SD':['Yu Darvish'],
+   'CHC':['Marcus Stroman'],
+   'MIN':['Pablo López'],
+   'MIL':['Corbin Burnes'],
+   'KC':['Zack Greinke'],
+   'NYM':['Max Scherzer'],
+   'STL':['Miles Mikolas'],
+   'SF':['Logan Webb'],
+   'COL':['German Marquez'],
+   'MIA':['Sandy Alcantara'],
+   'NYY':['Gerrit Cole'],
+   'BOS':['Chris Sale'],
+    }
 class Batter:
     def __init__(self, name, df) -> None:
         df=df[df['Player']==name]
@@ -39,7 +89,11 @@ class Batter:
     @property
     def hit_prob(self) -> float:
         '''returns the probability of a hit '''
-        return self._df['H'].iloc[0]/self._df['AB'].iloc[0]
+        try:
+            value = self._df['H'].iloc[0]/self._df['AB'].iloc[0]
+        except:
+            print(self._name)
+        return value
     @property
     def walk_prob(self) -> float:
         '''returns the probability of a walk'''
@@ -74,7 +128,7 @@ class Team:
     def __init__(self, name, df_bat, df_pit, batting_order, pit_order) -> None:
         self.name=name
         self.batters=[]
-        df_bat=df_bat[df_bat['Team']==name]
+        # df_bat=df_bat[df_bat['Team']==name]
         for b in batting_order:
             b=Batter(b, df_bat)
             self.batters.append(b)
