@@ -2,10 +2,13 @@ from game import Game
 import PySimpleGUI as sg  
 from team import batting_order_dict as pod
 from game_NN import NN_run
+
 #keep the formating of (away_score, home_score) for storing the scores easily
 
 def run_sim(away_team, home_team, iters=100):
-    '''runs a simulation of a baseball game'''
+    '''runs a simulation of a baseball game 100 times
+    returns the average score of the away team and the home team, 
+    also prints the transcript of the last game played'''
     list_of_scores=[]
     avg_away_score=0
     avg_home_score=0
@@ -44,7 +47,6 @@ def main():
         [
             sg.Push(), sg.Text("Estimated Score (simulator)", key='est_score'),  sg.Text('Estimated Winner', key='est_winner'), sg.Push()
         ],
-        
         [
             sg.Push(), sg.Text("Neural Network Predictions", font=('Arial', 18)), sg.Push()
         ],
@@ -63,7 +65,6 @@ def main():
         [
             sg.Push(),sg.Button("Predict", key='run_sim') 
         ],
-
     ]
     window=sg.Window(title="Baseball Simulator", layout=layout, margins=(100, 100), font=('Arial', 14))
     while True:
