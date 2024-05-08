@@ -47,7 +47,7 @@ class Game:
 
     def play_ball(self):
         '''plays a game of baseball, returns the score Tuple(away runs, home runs) and the transcript of the game'''
-        while self.inning<=9:
+        while self.inning<9:
             self.inning+=1
             self.play_inning()
         self.transcribe('Game Over')

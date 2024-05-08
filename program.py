@@ -18,6 +18,7 @@ def run_sim(away_team, home_team, iters=100):
         avg_home_score+=score[1]
     avg_away_score=avg_away_score/iters
     avg_home_score=avg_home_score/iters
+    print(transcript)
     return avg_away_score, avg_home_score
     
 
@@ -28,41 +29,43 @@ def main():
     team_keys=sorted(list(pod.keys()))
     layout = [
         [
-            sg.Text("Welcome to the Baseball Simulator", font=('Arial', 20))
+            sg.Push(), sg.Text("Welcome to the Baseball Simulator", font=('Arial', 20)), sg.Push()
         ],
         [
-            sg.Text("Away Team", key='away_title'), sg.Combo(team_keys, key='away_team')
+            sg.Push(), sg.Text("Home Team", key='home_title'), sg.Combo(team_keys, key='home_team'), sg.Text("Away Team", key='away_title'), sg.Combo(team_keys, key='away_team'), sg.Push()
+        ],
+        [
+            sg.HorizontalSeparator()
+        ],
+        [
+            sg.Push(), sg.Text("Simulation Results", font=('Arial', 18)), sg.Push(),
         ],
         
         [
-            sg.Text("Home Team", key='home_title'), sg.Combo(team_keys, key='home_team'),
+            sg.Push(), sg.Text("Estimated Score (simulator)", key='est_score'),  sg.Text('Estimated Winner', key='est_winner'), sg.Push()
         ],
         
         [
-            sg.Button("Run Simulation", key='run_sim')
+            sg.Push(), sg.Text("Neural Network Predictions", font=('Arial', 18)), sg.Push()
         ],
         [
-            sg.Text("Simulation Results", font=('Arial', 15))
-        ],
-
-        [
-            sg.Text("Estimated Score (simulator)", key='est_score'), sg.Text('Estimated Winner', key='est_winner'),
+            sg.Push(), sg.Text("Predicted Score (NN)", key='nn_score'),sg.Text('Predicted Winner', key='pred_winner'), sg.Push()
         ],
         [
-            sg.Text("--------------------------------------------------")
+            sg.Push(), sg.Text('Confidence Bar', key='confidence_title'), sg.Push()
         ],
         [
-            sg.Text("Neural Network Predictions", font=('Arial', 15))
+            sg.ProgressBar(1, orientation='h', size=(50, 10), key='nn_confidence', bar_color=('red','lightgoldenrod'), border_width=5, pad=(0, 2), style='winnative')
         ],
         [
-            sg.Text("Predicted Score (NN)", key='nn_score'), sg.Text('Predicted Winner', key='pred_winner')
+            sg.HorizontalSeparator()
         ],
         [
-            sg.ProgressBar(1, orientation='h', size=(20, 20), key='nn_confidence')
-        ]
+            sg.Push(),sg.Button("Predict", key='run_sim') 
+        ],
 
     ]
-    window=sg.Window(title="Baseball Simulator", layout=layout, margins=(100, 100), font=('Arial', 13))
+    window=sg.Window(title="Baseball Simulator", layout=layout, margins=(100, 100), font=('Arial', 14))
     while True:
         event, values=window.read()
         if event==sg.WIN_CLOSED:
